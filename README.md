@@ -89,6 +89,21 @@
 
 3. 避免使用id选择器、通配符选择器
 
+4. 选择器分组时，将选择器单独放一行
+
+   ```css
+   /* bad */
+   .jjly, .htgp {
+       /* ... */
+   }
+   
+   / * good */
+   .jjly,
+   .htgp {
+       /* ... */
+   }
+   ```
+
 ###### 属性规范
 
 1. 合理应用border: 0与border: none
@@ -123,11 +138,67 @@
    }
    ```
 
-4. https://guide.aotu.io/docs/css/code.html#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96
+4. 属性顺序：建议相关的属性放在一组，并按照下面的顺序排列：
+
+   - 布局定位属性：display / position / float / clear / visibility / overflow
+   - 自身属性：width / height / margin / padding / border / background
+   - 文本属性：color / font / text-decoration / text-align / vertical-align / white- space / break-word
+   - 其他属性（CSS3）：content / cursor / border-radius / box-shadow / text-shadow / background:linear-gradient …
+
+   由于定位可以从正常文档流中移除元素，并且还能覆盖盒模型属性，因此写在前面。而自身属性决定了组件的尺寸和位置，文本属性和其他属性改变细节样式，因此这样排序。
+
+   ```css
+   .jjly {
+       display: block;
+       position: relative;
+       float: left;
+       width: 100px;
+       height: 100px;
+       margin: 0 10px;
+       padding: 20px 0;
+       font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+       color: #333;
+       background: rgba(0,0,0,.5);
+       -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+       -o-border-radius: 10px;
+       -ms-border-radius: 10px;
+       border-radius: 10px;
+   }
+   ```
+
+5. 可简写的属性(background、font)进行显式声明
+
+   ```css
+   /* bad */
+   .jjly {
+       font: normal 12px;
+       background: #fff;
+   }
+   
+   /* good */
+   .jjly {
+       font-size: 12px;
+       font-style: normal;
+       background-color: #fff;
+   }
+   ```
 
 ###### 命名规范
 
+1. 自定义font-family命名与业务相关
 
+   ```css
+   /* bad */
+   @font-face {
+       font-family: somefont;
+   }
+   
+   /* good */
+   @font-face {
+       font-family: jjly-font;
+   }
+   ```
 
 #### 注释规范
 
@@ -138,6 +209,30 @@
 #### 媒体查询
 
 #### 移动端常用私有属性
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+## 3. 参考资料
+
+> [Aotu.io - 前端代码规范](https://guide.aotu.io/docs/)
+
+
+
+
+
+
+
+
 
 
 
@@ -1954,24 +2049,6 @@ function render(data) {
 JSON.parse(data);
 
  
-
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
